@@ -1,3 +1,7 @@
+venv/
+.vscode/
+*.tar.gz
+
 *.pkl
 *.jpg
 *.mp4
