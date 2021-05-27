@@ -1,6 +1,8 @@
+.ipynb_checkpoints/
 venv/
 .vscode/
 *.tar.gz
+*.zip
 
 *.pkl
 *.jpg
