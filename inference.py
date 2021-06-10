@@ -30,7 +30,7 @@ parser.add_argument('--pads', nargs='+', type=int, default=[0, 10, 0, 0],
 
 parser.add_argument('--face_det_batch_size', type=int, 
 					help='Batch size for face detection', default=16)
-parser.add_argument('--wav2lip_batch_size', type=int, help='Batch size for Wav2Lip model(s)', default=128)
+parser.add_argument('--wav2lip_batch_size', type=int, help='Batch size for Wav2Lip model(s)', default=32)
 
 parser.add_argument('--resize_factor', default=1, type=int, 
 			help='Reduce the resolution by this factor. Sometimes, best results are obtained at 480p or 720p')
