@@ -1,4 +1,4 @@
-import smtplib, ssl, os
+import smtplib, ssl, os, sys
 from email import encoders
 from email.mime.base import MIMEBase
 from email.mime.multipart import MIMEMultipart
@@ -13,7 +13,13 @@ password = "Poignant?"
 sender_email = "anytutor.official@gmail.com"
 print(receiver_email)
 name = receiver_email.split('@')[0]
-filename = "results/result_voice.mp4"  # In same directory as script
+
+if len(sys.argv) == 1:
+    filename = "results/result_voice.mp4"  # In same directory as script
+else:
+    filename = "results/result_lesson.mp4"
+
+print(filename)
 
 # Create a multipart message and set headers
 message = MIMEMultipart()

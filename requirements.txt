@@ -1,4 +1,3 @@
-librosa
 numpy
 opencv-contrib-python
 opencv-python-headless
@@ -7,3 +6,4 @@ torchvision
 tqdm
 numba
 scipy
+moviepy
