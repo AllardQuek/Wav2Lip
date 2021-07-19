@@ -1,4 +1,5 @@
 .ipynb_checkpoints/
+media_inputs/
 venv/
 .vscode/
 *.tar.gz
