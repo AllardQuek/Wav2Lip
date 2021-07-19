@@ -3,7 +3,7 @@ import unittest
 
 
 class TestHelpers(unittest.TestCase):
-    def test_LoadBert_raisesOSError_with_absent_model(self):
+    def test_basic_multiplication(self):
         self.assertEqual(3*2, 6)
 
 
