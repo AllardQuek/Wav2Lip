@@ -6,7 +6,11 @@ If unsuccessful, an email will be sent with an error message.
 """
 
 
-import smtplib, ssl, os, sys
+import json
+import smtplib
+import ssl
+import os
+import sys
 from email import encoders
 from email.mime.base import MIMEBase
 from email.mime.multipart import MIMEMultipart
@@ -55,10 +59,9 @@ def configure_message(sender_email, receiver_email, subject, body, part=False):
 
     # Add body to email
     message.attach(MIMEText(body, "plain"))
-
     if part:
         message.attach(part)    # Add attachment to message
-        
+
     text = message.as_string()  # Convert message to string
     return text
 
@@ -66,14 +69,16 @@ def configure_message(sender_email, receiver_email, subject, body, part=False):
 def send_email(is_lesson=False, error=False):
     # * Set up email details
     port = 465    # For SSL
-    password = os.getenv("ANYTUTOR_GMAIL_PASSWORD")
+    with open('config.json', 'r') as f:
+        config = json.load(f)
+    password = config['ANYTUTOR_GMAIL_PASSWORD']
     sender_email = "anytutor.official@gmail.com"
 
-    # Email should be stored in a file named 'email.txt'
+    # Email filepath depends on where the script is being run from
     with open('email.txt') as f:
         receiver_email = f.readline().strip('\n')
 
-    name =  receiver_email.split('@')[0]
+    name = receiver_email.split('@')[0]
     filename = "results/result_lesson.mp4" if is_lesson else "results/result_voice.mp4"
 
     # * Craft email message
@@ -87,7 +92,7 @@ def send_email(is_lesson=False, error=False):
     with smtplib.SMTP_SSL("smtp.gmail.com", port, context=context) as server:
         server.login(sender_email, password)
         server.sendmail(sender_email, receiver_email, text)
-    
+
     print("EMAIL SENT")
 
 
